@@ -1,7 +1,12 @@
 import React from 'react';
+import UserTable from '../../components/users/UserTable';
 
 const Users: React.FC = () => {
-  return <h1>Users</h1>;
+  return (
+    <>
+      <UserTable />
+    </>
+  );
 }
 
 export default Users;
