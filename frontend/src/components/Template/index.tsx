@@ -21,7 +21,11 @@ import style from './styles';
 
 const useStyles = style;
 
-const Template: React.FC = ({ children }) => {
+interface IProps {
+  children: JSX.Element[] | JSX.Element
+}
+
+const Template: React.FC<IProps> = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => setOpen(true);
@@ -60,13 +64,13 @@ const Template: React.FC = ({ children }) => {
         <List>
           <ListItem button component={Link} to="/">
             <ListItemIcon>
-              <HomeIcon color="secondary" />
+              <HomeIcon color="primary" />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <ListItem button component={Link} to="/users">
             <ListItemIcon>
-              <GroupIcon color="secondary" />
+              <GroupIcon color="primary" />
             </ListItemIcon>
             <ListItemText primary="Usuários" />
           </ListItem>  

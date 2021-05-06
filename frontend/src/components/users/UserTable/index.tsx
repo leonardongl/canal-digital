@@ -7,6 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { HeaderTableCell } from './styles';
 
 
@@ -35,6 +38,7 @@ export default function CustomizedTables() {
             <HeaderTableCell>E-mail</HeaderTableCell>
             <HeaderTableCell align="center">Telefone</HeaderTableCell>
             <HeaderTableCell align="center">Idade</HeaderTableCell>
+            <HeaderTableCell align="center">Ações</HeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -44,6 +48,14 @@ export default function CustomizedTables() {
               <TableCell>{row.email}</TableCell>
               <TableCell align="center">{row.phone}</TableCell>
               <TableCell align="center">{row.age}</TableCell>
+              <TableCell align="center">
+                <IconButton component="span" size="small" >
+                  <EditIcon />
+                </IconButton>
+                <IconButton component="span" size="small">
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
