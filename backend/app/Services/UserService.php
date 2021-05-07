@@ -24,7 +24,7 @@ class UserService
     public static function findAll(): Collection
     {
         try {
-            return User::all();
+            return User::with('address')->get();
         } catch (Exception $e) {
             throw new Exception("Erro ao buscar usuários");
             Log::error($e->getMessage());

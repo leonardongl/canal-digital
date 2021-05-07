@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,14 +11,12 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { HeaderTableCell } from './styles';
+import IUser from '../../../interfaces/IUser';
+import api from '../../../services/api';
 
-
-function createData(name: string, email: string, phone: number, age: number) {
-  return { name, email, phone, age };
+function createData(name: string, email: string, phone: string) {
+  return { name, email, phone };
 }
-const rows = [
-  createData('Leonardo Noronha', 'leonardongl@gmail.com', 92981146884, 24),
-];
 
 const useStyles = makeStyles({
   table: {
@@ -27,7 +25,21 @@ const useStyles = makeStyles({
 });
 
 export default function CustomizedTables() {
+  const [users, setUsers] = useState<IUser[]>([]);
   const classes = useStyles();
+  
+  async function getUsers(): Promise<void> {
+    const { data } = await api.get<IUser[]>(`users`);
+    setUsers(data);
+    
+    users.forEach(user => {
+      createData(user.name, user.email, user.phone);
+    });
+  }
+  
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -37,17 +49,15 @@ export default function CustomizedTables() {
             <HeaderTableCell>Nome</HeaderTableCell>
             <HeaderTableCell>E-mail</HeaderTableCell>
             <HeaderTableCell align="center">Telefone</HeaderTableCell>
-            <HeaderTableCell align="center">Idade</HeaderTableCell>
             <HeaderTableCell align="center">Ações</HeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell scope="row">{row.name}</TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell align="center">{row.phone}</TableCell>
-              <TableCell align="center">{row.age}</TableCell>
+          {users.map(u => (
+            <TableRow key={u.name}>
+              <TableCell scope="row">{u.name}</TableCell>
+              <TableCell>{u.email}</TableCell>
+              <TableCell align="center">{u.phone}</TableCell>
               <TableCell align="center">
                 <IconButton component="span" size="small" >
                   <EditIcon />
