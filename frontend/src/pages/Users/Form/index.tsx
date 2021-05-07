@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams  } from "react-router-dom";
+import { Link, useParams, useHistory  } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,8 @@ import api from '../../../services/api';
 
 const UserForm: React.FC = () => {
   const params = useParams();
-  const { register, handleSubmit } = useForm();
+  const history = useHistory();
+  const { register, handleSubmit, errors } = useForm();
   const [user, setUser] = useState<IUser>();
   const [invalidCEP, setInvalidCEP] = useState<boolean>(false);
   const callViaCEP = (e: any) => viaCEP(e.target.value);
@@ -57,8 +58,9 @@ const UserForm: React.FC = () => {
   
   async function submitForm(data: any): Promise<void> {
     try {
-      console.log(user);
       user?.id ? await api.put<IUser>(`users/${user.id}`, data) : await api.post<IUser>(`users`, data);
+      history.push("/users");
+      alert('Usuário salvo com sucesso!');
     } catch (error) {
       console.log(error);
     }
@@ -94,8 +96,8 @@ const UserForm: React.FC = () => {
               fullWidth 
               id="name" 
               name="name" 
-              helperText="Nome Completo"
-              inputRef={register} 
+              helperText="Nome Completo *"
+              inputRef={register({ required: true })} 
             />
           </Grid>
           <Grid item xs={7}>
@@ -103,8 +105,8 @@ const UserForm: React.FC = () => {
               fullWidth
               id="email"
               name="email"
-              helperText="E-mail" 
-              inputRef={register}
+              helperText="E-mail *" 
+              inputRef={register({ required: true })} 
             />
           </Grid>
           <Grid item xs={5}>
@@ -112,8 +114,8 @@ const UserForm: React.FC = () => {
               fullWidth 
               id="phone" 
               name="phone" 
-              helperText="Telefone"
-              inputRef={register}
+              helperText="Telefone *"
+              inputRef={register({ required: true })} 
             />
           </Grid>
           <Grid item xs={3}>
