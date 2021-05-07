@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CustomizedTables() {
+const UserTable: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
@@ -40,7 +41,7 @@ export default function CustomizedTables() {
     setPage(0);
   };
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, users.length - page * rowsPerPage);
-  
+
   async function getUsers(): Promise<void> {
     const { data } = await api.get<IUser[]>(`users`);
     setUsers(data);
@@ -74,7 +75,7 @@ export default function CustomizedTables() {
               <TableCell>{user.email}</TableCell>
               <TableCell align="center">{user.phone}</TableCell>
               <TableCell align="center">
-                <IconButton component="span" size="small" >
+                <IconButton size="small" component={Link} to={`/users/edit/${user.id}`}>
                   <EditIcon />
                 </IconButton>
                 <IconButton component="span" size="small">
@@ -102,3 +103,5 @@ export default function CustomizedTables() {
     </TableContainer>
   );
 }
+
+export default UserTable;

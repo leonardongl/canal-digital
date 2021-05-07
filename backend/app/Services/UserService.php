@@ -21,6 +21,16 @@ class UserService
         }
     }
 
+    public static function findWithAddress(int $id): User
+    {
+        try {
+            return User::with('address')->where('id', $id)->first();
+        } catch (Exception $e) {
+            throw new Exception("Erro ao buscar usuário");
+            Log::error($e->getMessage());
+        }
+    }
+
     public static function findAll(): Collection
     {
         try {

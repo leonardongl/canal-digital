@@ -12,6 +12,12 @@ class UserController extends Controller
         return UserService::findAll();
     }
     
+    public function find(int $id)
+    {
+        $user = UserService::findWithAddress($id);
+        return response()->json($user, 200);
+    }
+    
     public function store(UserRequest $request)
     {
         $user = UserService::store($request);

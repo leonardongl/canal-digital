@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             ]);
             Address::create([
                 'user_id' => $user->id,
-                'cep' => $faker->postcode,
+                'cep' => $faker->numberBetween(30000000,70000000),
                 'number' => $faker->buildingNumber,
                 'street' => $faker->streetName,
                 'complement' => $faker->name,
