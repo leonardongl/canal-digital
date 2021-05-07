@@ -34,7 +34,7 @@ class UserService
     public static function findAll(): Collection
     {
         try {
-            return User::with('address')->get();
+            return User::with('address')->orderBy('name')->get();
         } catch (Exception $e) {
             throw new Exception("Erro ao buscar usuários");
             Log::error($e->getMessage());
@@ -77,9 +77,13 @@ class UserService
     public static function delete(int $id): void
     {
         try {
+            DB::beginTransaction();
             $user = self::find($id);
+            $user->address->delete();
             $user->delete();
+            DB::commit();
         } catch (Exception $e) {
+            DB::rollBack();
             throw new Exception("Erro ao excluir usuário");
             Log::error($e->getMessage());
         }

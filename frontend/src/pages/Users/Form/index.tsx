@@ -59,8 +59,10 @@ const UserForm: React.FC = () => {
   async function submitForm(data: any): Promise<void> {
     try {
       user?.id ? await api.put<IUser>(`users/${user.id}`, data) : await api.post<IUser>(`users`, data);
-      history.push("/users");
-      alert('Usuário salvo com sucesso!');
+      history.push({ 
+        pathname: '/users', 
+        state: { alert: 'success' }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -192,14 +194,32 @@ const UserForm: React.FC = () => {
           </Grid>
         </Grid>
         <Box display="flex" justifyContent="flex-end">
-          <Button variant="contained" color="secondary" component={Link} to="/users" style={{ margin: '40px 10px' }}>
+          <Button
+            variant="contained" 
+            color="secondary" 
+            component={Link} 
+            to="/users" 
+            style={{ margin: '40px 10px' }}
+          >
             Cancelar
           </Button>
-          <Button type="submit" variant="contained" color="primary" style={{ margin: '40px 10px' }}>
+          <Button 
+            type="submit" 
+            variant="contained" 
+            color="primary" 
+            style={{ margin: '40px 10px' }}
+          >
             Salvar
           </Button>
         </Box>
       </form>
+      <Grid container spacing={3} style={{ marginBottom: 20 }}>
+        <Grid item xs={12}>
+          <Box style={{ color: '#666' }}>
+            Campos com * são obrigatórios
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 }
