@@ -3,14 +3,13 @@
 use App\Address;
 use App\User;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
     public function run()
     {
-        $faker = new Faker();
-
+        $faker = \Faker\Factory::create();
+        
         for ($i = 0; $i < 50; $i++) {
             $user = User::create([
                 'name' => $faker->name,

@@ -17,7 +17,7 @@ class CreateAddressesTable extends Migration
             $table->string('district')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
