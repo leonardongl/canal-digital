@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 const UserTable: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [rowsPerPage] = useState<number>(5);
   const [open, setOpen] = useState<boolean>(false);
   const [userId, setUserId] = useState<number>();
   const classes = useStyles();
