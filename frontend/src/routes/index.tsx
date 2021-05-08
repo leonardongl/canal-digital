@@ -2,8 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Template from '../components/Template';
 import Home from '../pages/Home';
-import UserList from '../pages/users/List';
-import UserForm from '../pages/users/Form';
+import UserList from '../pages/Users/List';
+import UserForm from '../pages/Users/Form';
 
 const Routes: React.FC = () => (
   <>
