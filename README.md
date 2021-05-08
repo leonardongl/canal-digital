@@ -25,7 +25,7 @@ $ git clone https://github.com/leonardongl/canal-digital.git
 $ cd canal-digital/backend
 $ cp .env.example .env
 ```
-- Configure o arquivo .env de acordo com suas configurações
+- Configure o arquivo .env de acordo com suas configurações de banco de dados
 
 ## Build API
 
@@ -39,7 +39,7 @@ $ php artisan serve
 
 
 ## Build Web
-
+- Abra outro terminal e execute os seguintes comandos
 ```sh
 $ cd canal-digital/backend
 $ npm install

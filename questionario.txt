@@ -1,0 +1,21 @@
+
+1. A solução deve ser disponibilizada em Cloud ou On-premise?
+  R: Cloud seria mais ideal por se tratar de algo que irá interagir com pessoas de todos os lugares, no caso, clientes.
+
+
+2. Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa solução, responda qual ferramenta acreditas ser apropriada para o controle de tarefas da equipe, a ferramenta é ágil?
+  R: Utilização de softwares para gestão de trabalho, como o "monday.com" seriam de grande ajuda para criar e ter controle das sprints e atividades do projeto.
+    Outra solução que acho favorável é o uso do "Gitlab" que poderia servir tanto quanto repositório quanto como controle de sprints e atividades.
+    Ambas as soluções são ferramentas ágeis.
+
+
+3. Você se sente capaz de liderar esta equipe? Por quê?
+  R: De certa forma, sim. Consigo lidar com pessoas de maneira calma e fácil. Procuro sempre ser organizado e atender os prazos.
+
+
+4. Se pudesse sugerir uma melhoria, mudança ou oportunidade. O que seria?
+  R: Talvez um chat por voz dentro dos canais digitais, seria algo inovador pois desconheço algo assim.
+
+
+5. Acha válido esse desafio para o processo que está participando?
+  R: Sim. Além de avaliar as habilidades de código, também avaliação a área de Engenharia de Software.
